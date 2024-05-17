@@ -17,7 +17,8 @@ namespace baitap1
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection("Data Source=LAPTOP-MA993H5S\\CSDLPTNHOM01;Initial Catalog=QLDACT;Integrated Security=True");
+        // Update the connection string to reflect your SQL Server instance and credentials
+        SqlConnection con = new SqlConnection("Data Source=LAPTOP-MA993H5S\\SQLEXPRESS01;Initial Catalog=QLNV;Integrated Security=True");
         private static DataTable DataSource;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,8 +27,8 @@ namespace baitap1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //Thực hiện truy vấn SQL để lấy dữ liệu từ bảng Nhanvien
-            string sql = "select * from Nhanvien";
+            //Thực hiện truy vấn SQL để lấy dữ liệu từ bảng NhanVien
+            string sql = "select * from NhanVien";
             //Sử dụng SqlDataAdapter để điền dữ liệu vào DataTable
             var a = new SqlDataAdapter(sql, con);
             var tb = new DataTable();
@@ -55,20 +56,20 @@ namespace baitap1
                 con.Open();
 
                 // Câu truy vấn SQL để lấy thông tin của nhân viên
-                string sql = "SELECT * FROM NHANVIEN";
+                string sql = "SELECT * FROM NhanVien";
 
                 // Nếu mã nhân viên được nhập, chỉ hiển thị thông tin của nhân viên có mã đó
                 // Nếu không, hiển thị tất cả thông tin của tất cả nhân viên
                 if (!string.IsNullOrWhiteSpace(maNV))
                 {
-                    sql += " WHERE MaNV = @MaNV";
+                    sql += " WHERE MaNhanVien = @MaNhanVien"; // Adjusted the parameter name to match your database
                 }
 
                 // Khởi tạo SqlCommand và thêm tham số cho câu truy vấn SQL
                 var command = new SqlCommand(sql, con);
                 if (!string.IsNullOrWhiteSpace(maNV))
                 {
-                    command.Parameters.AddWithValue("@MaNV", maNV);
+                    command.Parameters.AddWithValue("@MaNhanVien", maNV); // Ensure parameter matches the column name
                 }
 
                 // Sử dụng SqlDataAdapter để thực thi câu truy vấn và lấy dữ liệu

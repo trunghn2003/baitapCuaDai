@@ -19,7 +19,7 @@ namespace baitap1
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection("Data Source=MANHLAM\\SQLEXPRESS;Initial Catalog=QLDACT;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=LAPTOP-MA993H5S\\SQLEXPRESS01;Initial Catalog=QLNV;Integrated Security=True");
         private void Form3_Load(object sender, EventArgs e)
         {
             string sql = "select *from NHANVIEN";
@@ -31,7 +31,7 @@ namespace baitap1
         Boolean addPB = false;
         private void them_Click(object sender, EventArgs e)// thêm nhân viên vào danh sách
         {
-            string connectionString = "Data Source=MANHLAM\\SQLEXPRESS;Initial Catalog=QLDACT;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-MA993H5S\\SQLEXPRESS01;Initial Catalog=QLNV;Integrated Security=True";
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                     try
@@ -45,14 +45,12 @@ namespace baitap1
                         // Định dạng dữ liệu ảnh thành byte[]
                         byte[] imageBytes = chuyen();
 
-                        cmd.Parameters.AddWithValue("@MaNV", txtmanv1.Text);
-                        cmd.Parameters.AddWithValue("@anhNV", imageBytes);
-                        cmd.Parameters.AddWithValue("@HoTen", txthoten1.Text);
-                        cmd.Parameters.AddWithValue("@Phai", txtphai1.Text);
-                        cmd.Parameters.AddWithValue("@NTNS", txtntns1.Text);
-                        cmd.Parameters.AddWithValue("@MaPH", txtmaph1.Text);
-                        cmd.Parameters.AddWithValue("@Luong", txtluong1.Text);
-                        cmd.Parameters.AddWithValue("@Ma_NQL", txtmaql1.Text);
+                        cmd.Parameters.AddWithValue("@MaNhanVien", txtmanv1.Text);
+                        cmd.Parameters.AddWithValue("@AnhNhanVien", imageBytes);
+                        cmd.Parameters.AddWithValue("@TenNhanVien", txthoten1.Text);
+                        cmd.Parameters.AddWithValue("@NgaySinh", txtntns1.Text);
+                        cmd.Parameters.AddWithValue("@ChucVu", txtluong1.Text);
+                        cmd.Parameters.AddWithValue("@MaPhongBan", txtmaql1.Text);
 
                         //thêm nv vào csdl
                         cmd.ExecuteNonQuery();
